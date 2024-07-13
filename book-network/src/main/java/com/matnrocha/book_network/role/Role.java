@@ -1,7 +1,7 @@
 package com.matnrocha.book_network.role;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.matnrocha.book_network.User;
+import com.matnrocha.book_network.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

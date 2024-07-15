@@ -32,5 +32,8 @@ spring:
 application:
   security:
     jwt:
-      secret-key: 8B9233BAF7D863CE67C22EC7DA7FA
+      secret-key: kdT6OaYPENbGKfUh4c5zBbmDOioAsdN8
       expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account

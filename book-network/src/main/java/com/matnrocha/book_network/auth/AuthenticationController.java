@@ -23,6 +23,6 @@ public class AuthenticationController {
             throws MessagingException
     {
         authenticationService.register(request);
-        return ResponseEntity.accepted().build()
+        return ResponseEntity.accepted().build();
     }
 }

@@ -1,7 +1,6 @@
 package com.matnrocha.book_network.book;
 
 import com.matnrocha.book_network.common.BaseEntity;
-import com.matnrocha.book_network.feedback.Feedback;
 import com.matnrocha.book_network.history.BookTransactionHistory;
 import com.matnrocha.book_network.user.User;
 import jakarta.persistence.*;

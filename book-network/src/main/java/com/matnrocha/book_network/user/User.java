@@ -1,5 +1,7 @@
 package com.matnrocha.book_network.user;
 
+import com.matnrocha.book_network.book.Book;
+import com.matnrocha.book_network.history.BookTransactionHistory;
 import com.matnrocha.book_network.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,6 +38,12 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

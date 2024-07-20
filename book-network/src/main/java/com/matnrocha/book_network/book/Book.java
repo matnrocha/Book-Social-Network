@@ -2,6 +2,7 @@ package com.matnrocha.book_network.book;
 
 import com.matnrocha.book_network.common.BaseEntity;
 import com.matnrocha.book_network.feedback.Feedback;
+import com.matnrocha.book_network.history.BookTransactionHistory;
 import com.matnrocha.book_network.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,8 @@ public class Book extends BaseEntity {
     private User owner;
 
     @OneToMany(mappedBy = "book")
-    private List<Feedback> feedbackList;
+    private List<BookTransactionHistory> histories;
+
 
 
     //todo stablish the relationships

@@ -1,6 +1,7 @@
 package com.matnrocha.book_network.book;
 
 import com.matnrocha.book_network.common.BaseEntity;
+import com.matnrocha.book_network.feedback.Feedback;
 import com.matnrocha.book_network.history.BookTransactionHistory;
 import com.matnrocha.book_network.user.User;
 import jakarta.persistence.*;
@@ -33,7 +34,25 @@ public class Book extends BaseEntity {
     private User owner;
 
     @OneToMany(mappedBy = "book")
+    private List<Feedback> feedbacks;
+
+    @OneToMany(mappedBy = "book")
     private List<BookTransactionHistory> histories;
+
+
+
+    @Transient
+    public double getRate(){
+        if(feedbacks == null || feedbacks.isEmpty()) {
+            return 0.0;
+        }
+
+        var avgRate = feedbacks.stream()
+                .mapToDouble(Feedback::getNote)
+                .average()
+                .orElse(0.0);
+        return (double) Math.round(avgRate);    //double rounded = Math.round(avgRate * 10.0) / 10.0
+    }
 
 
 

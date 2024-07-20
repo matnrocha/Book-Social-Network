@@ -1,6 +1,7 @@
 package com.matnrocha.book_network.book;
 
 import com.matnrocha.book_network.common.BaseEntity;
+import com.matnrocha.book_network.feedback.Feedback;
 import com.matnrocha.book_network.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +31,9 @@ public class Book extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+
+    @OneToMany(mappedBy = "book")
+    private List<Feedback> feedbackList;
 
 
     //todo stablish the relationships

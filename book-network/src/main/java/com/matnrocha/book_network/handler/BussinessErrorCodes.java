@@ -15,6 +15,7 @@ public enum BussinessErrorCodes {
     BAD_CREDENTIALS(304, FORBIDDEN, "Login and/or password is incorrect"),
 
     ;
+
     @Getter
     private int code;
     @Getter

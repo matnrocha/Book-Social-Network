@@ -19,7 +19,6 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 public class BookTransactionHistory extends BaseEntity {
-    //todo user and book relationships
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

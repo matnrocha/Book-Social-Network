@@ -38,6 +38,4 @@ public class Book extends BaseEntity {
 
 
 
-    //todo stablish the relationships
-
 }

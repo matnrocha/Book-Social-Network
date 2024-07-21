@@ -11,6 +11,16 @@ import java.util.Optional;
 public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
 
     @Query("""
+        SELECT transaction
+        FROM BookTransactionHistory transaction
+        WHERE transaction.book.id = :bookId
+        AND transaction.book.owner.id = :userId
+        AND transaction.returned = true
+        AND transaction.returnApproved = false
+    """)
+    Optional<BookTransactionHistory> findByBookIdAndOwnerId(@Param("bookId") Integer bookId, @Param("userId") Integer userId);
+
+    @Query("""
               SELECT history
               FROM BookTransactionHistory history
               WHERE history.user.id = :userId

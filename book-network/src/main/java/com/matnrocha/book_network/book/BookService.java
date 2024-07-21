@@ -138,5 +138,6 @@ public class BookService {
 
         book.setShareable(!book.isShareable());
         bookRepository.save(book);
+        return bookId;
     }
 }

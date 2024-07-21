@@ -22,7 +22,6 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
-    private final BookMapper mapper;
     private final BookTransactionHistoryRepository transactionHistoryRepository;
     private final BookMapper bookMapper;
 
@@ -30,7 +29,7 @@ public class BookService {
         //get the user
         User user = (User) authentication.getPrincipal();
         //BookRequest -> Book Entity
-        Book book = mapper.toBook(request);
+        Book book = bookMapper.toBook(request);
         book.setOwner(user);
         //return id
         return bookRepository.save(book).getId();
@@ -38,7 +37,7 @@ public class BookService {
 
     public BookResponse findById(Integer id) {
         return bookRepository.findById(id)
-                .map(mapper::toBookResponse)
+                .map(bookMapper::toBookResponse)
                 .orElseThrow(() -> new EntityNotFoundException("No book found with the Id: " + id));
     }
 
@@ -137,6 +136,18 @@ public class BookService {
         }
 
         book.setShareable(!book.isShareable());
+        bookRepository.save(book);
+        return bookId;
+    }
+
+    public Integer updateArchivedStatus(Integer bookId, Authentication connectedUser) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("No book found with ID:: " + bookId));
+        User user = ((User) connectedUser.getPrincipal());
+        if (!Objects.equals(book.getOwner().getId(), user.getId())) {
+            throw new OperationNotPermittedException("You cannot update others books archived status");
+        }
+        book.setArchived(!book.isArchived());
         bookRepository.save(book);
         return bookId;
     }

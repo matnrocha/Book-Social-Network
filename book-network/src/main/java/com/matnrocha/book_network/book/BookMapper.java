@@ -1,5 +1,6 @@
 package com.matnrocha.book_network.book;
 
+import com.matnrocha.book_network.file.FileUtils;
 import com.matnrocha.book_network.history.BookTransactionHistory;
 import com.matnrocha.book_network.history.BorrowedBookResponse;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class BookMapper {
                 .owner(book.getOwner().getFullName())
                 .rate(book.getRate())
                 .archived(book.isArchived())
-                //todo implement the .cover()
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .shareable(book.isShareable())
                 .build();
     }

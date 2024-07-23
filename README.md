@@ -73,7 +73,7 @@ To set up the backend of the Book Social Network project, follow these steps:
   mvn clean install
 ```
 
-4. Run the application but first replace the `x.x.x` with the current version from the `pom.xml` file
+4. Run the application
 
 ```bash
   java -jar target/book-network-0.0.1.jar
